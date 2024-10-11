@@ -7,6 +7,10 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
+
+#include<string>
+#include<valarray>
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -14,6 +18,8 @@
 
 #define DEFAULT_BUFLEN 512
 #define DEFAULT_PORT "27015"
+
+using namespace std;
 
 int __cdecl main(void)
 {
@@ -99,6 +105,20 @@ int __cdecl main(void)
         if (iResult > 0) {
             printf("Bytes received: %d\n", iResult);
 
+            char test[2];
+
+            for (int i = 0; i < iResult; i++) {
+                test[i] = recvbuf[i];
+            }
+
+            int testInt = {};
+            testInt = reinterpret_cast<int>(test);
+            cout << testInt << endl;
+            /*for (int i=0; i < iResult; i++) {
+                std::cout << recvbuf[i];
+            }
+            std::cout << std::endl;*/
+            
             // Echo the buffer back to the sender
             iSendResult = send(ClientSocket, recvbuf, iResult, 0);
             if (iSendResult == SOCKET_ERROR) {
