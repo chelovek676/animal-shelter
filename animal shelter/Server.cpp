@@ -105,7 +105,7 @@ int __cdecl main(void)
         if (iResult > 0) {
             printf("Bytes received: %d\n", iResult);
 
-            char test[2];
+            char test[4] = {};
 
             for (int i = 0; i < iResult; i++) {
                 test[i] = recvbuf[i];
