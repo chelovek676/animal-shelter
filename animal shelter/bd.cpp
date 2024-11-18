@@ -38,33 +38,11 @@ void BD::read() {
     print(); 
 }
 
-void BD::add() {
-    Animals newAnimal;
-    bool breed, gender;
-    unsigned short int age;
-    unsigned int id = KotikiVec.empty() ? 1 : KotikiVec.back().get_Id() + 1;
-    newAnimal.set_Id(id);
-
-    std::cout << "Adding a new animal with ID: " << id << std::endl;
-
-    std::cout << "Does it have a breed? (1 - yes, 0 - no): ";
-    std::cin >> breed;
-    newAnimal.set_Breed(breed);
-
-    std::cout << "Enter gender (1 - male, 0 - female): ";
-    std::cin >> gender;
-    newAnimal.set_Gender(gender);
-
-    std::cout << "Enter age: ";
-    std::cin >> age;
-    newAnimal.set_Age(age);
-
-    newAnimal.set_Status(1);
-
+void BD::add(const Animals& newAnimal) {
     KotikiVec.push_back(newAnimal);
     _NumberOfCats = KotikiVec.size();
 
-    std::cout << "New animal added successfully with ID: " << id << " and status in shelter.\n";
+    cout << "New animal added successfully with ID: " << id << " and status in shelter.\n";
 }
 
 
@@ -75,37 +53,36 @@ void BD::print() {
     }
 }
 
-#include <iostream>
 
 void BD::edit(unsigned int _id) {
     for (auto& animal : KotikiVec) {
         if (animal.get_Id() == _id) {
-            std::cout << "Editing information for animal with ID " << _id << ":\n";
+            cout << "Editing information for animal with ID " << _id << ":\n";
             
             bool newBreed, newGender, newStatus;
             unsigned short int newAge;
 
-            std::cout << "Does it have a breed? (1 - yes, 0 - no): ";
-            std::cin >> newBreed;
+            cout << "Does it have a breed? (1 - yes, 0 - no): ";
+            cin >> newBreed;
             animal.set_Breed(newBreed);
 
-            std::cout << "Enter gender (1 - male, 0 - female): ";
-            std::cin >> newGender;
+            cout << "Enter gender (1 - male, 0 - female): ";
+            cin >> newGender;
             animal.set_Gender(newGender);
 
-            std::cout << "Enter age: ";
-            std::cin >> newAge;
+            cout << "Enter age: ";
+            cin >> newAge;
             animal.set_Age(newAge);
 
-            std::cout << "Status (1 for in shelter, 0 for not in shelter): ";
-            std::cin >> newStatus;
+            cout << "Status (1 for in shelter, 0 for not in shelter): ";
+            cin >> newStatus;
             animal.set_Status(newStatus);
 
-            std::cout << "Information updated.\n";
+            cout << "Information updated.\n";
             return;
         }
     }
-    std::cout << "Animal with ID " << _id << " not found.\n";
+    cout << "Animal with ID " << _id << " not found.\n";
 }
 
 void BD::Delete(unsigned int _id) {
@@ -113,9 +90,9 @@ void BD::Delete(unsigned int _id) {
         if (it->get_Id() == _id) {
             KotikiVec.erase(it);
             _NumberOfCats = KotikiVec.size();
-            std::cout << "Animal with ID " << _id << " deleted.\n";
+            cout << "Animal with ID " << _id << " deleted.\n";
             return;
         }
     }
-    std::cout << "Animal with ID " << _id << " not found.\n";
+    cout << "Animal with ID " << _id << " not found.\n";
 }
