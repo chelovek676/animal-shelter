@@ -13,5 +13,5 @@ void edit(uint _id);
 void add(Animals);
 void Delete(uint _id);
 void print();
-vector<Animals>search(unsigned int _id, bool _breed, bool _gender, unsigned short int _age, bool _status);
+vector<Animals>search(unsigned int _id, bool _breed, bool _gender, bool _age);
     }

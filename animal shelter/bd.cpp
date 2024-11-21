@@ -96,3 +96,13 @@ void BD::Delete(unsigned int _id) {
     }
     cout << "Animal with ID " << _id << " not found.\n";
 }
+
+vector<Animals> BD::search(unsigned int _id, bool _breed, bool _gender, bool _age) {
+    vector<Animals> FilteredVec;
+    for (auto it = KotikiVec.begin(); it != KotikiVec.end(); ++it) {
+        if (it->get_Id() == _id and it->get_Breed() == _breed and it->get_Gender() == _gender and it->get_Age() == _age) {
+            FilteredVec.push_back(it);
+        }
+    }
+    return FilteredVec;
+}
