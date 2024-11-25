@@ -7,11 +7,14 @@
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
 #include <stdio.h>
+#include <iostream>
 
 #pragma comment(lib, "Ws2_32.lib")
 
 #define DEFAULT_PORT "27015"
 #define DEFAULT_BUFLEN 512
+
+typedef char byte;
 
 int main(int argc, char *argv[]) {
 	WORD wVersionRequested;
@@ -94,13 +97,24 @@ int main(int argc, char *argv[]) {
 	}
 	int recvbuflen = DEFAULT_BUFLEN;
 
-	const char* sendbuf = "this is a test";
+	//const char* sendbuf = "this is a test";
+	//int test = 1488;
+	//char* sendbuf;
+	//sendbuf = reinterpret_cast<char*>(&test);
+	//sendbuf = (char*)&test;
+	//test = (int)(sendbuf);
+	//std::cout << test << std::endl;
+	int key;
+	byte test[4];
+	std::cout << "Enter key" << std::endl;
+	std::cin >> key;
+	memcpy(test, reinterpret_cast<byte*>(&key), sizeof(int));
 	char recvbuf[DEFAULT_BUFLEN];
 
 	//int iResult;
 
 	// Send an initial buffer
-	iResult = send(ConnectSocket, sendbuf, (int)strlen(sendbuf), 0);
+	iResult = send(ConnectSocket, test, (int)strlen(test), 0);
 	if (iResult == SOCKET_ERROR) {
 		printf("send failed: %d\n", WSAGetLastError());
 		closesocket(ConnectSocket);
