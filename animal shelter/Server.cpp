@@ -31,6 +31,7 @@ int __cdecl main(void)
 {
     BD dataBase = {};
     dataBase.read();
+    dataBase.print();
     WSADATA wsaData;
     int iResult;
 
@@ -164,7 +165,13 @@ int __cdecl main(void)
                 iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
                 char* data{new char(sizeof(Animals)*numberInt)};
                 memcpy(data, reinterpret_cast<char*>(&(KotikiFil[0])), sizeof(Animals)*numberInt);
-                iResult = send(ClientSocket, data, sizeof(data), 0);
+                vector<Animals>test;
+                test.resize(numberInt);
+                memcpy(reinterpret_cast<char*>(&(test[0])), data, sizeof(Animals)* numberInt);
+                for (int i = 0; i < numberInt; i++) {
+                    cout << test[i] << endl;
+                }
+                iResult = send(ClientSocket, data, sizeof(Animals)*numberInt, 0);
 
             }
             break;
