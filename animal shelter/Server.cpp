@@ -161,7 +161,7 @@ int __cdecl main(void)
                 memcpy(number, reinterpret_cast<char*>(&numberInt), sizeof(number));
 
                 iResult = send(ClientSocket, number, sizeof(number), 0);
-
+                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
                 char* data{ new char[sizeof(KotikiFil)]};
                 memcpy(data, reinterpret_cast<char*>(&KotikiFil), sizeof(KotikiFil));
                 iResult = send(ClientSocket, data, sizeof(data), 0);
