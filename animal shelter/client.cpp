@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "AnimalClass.h"
+#include<vector>
 
 // Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -168,16 +169,11 @@ int __cdecl main(int argc, char** argv)
 
             unsigned long int num = {};
             memcpy(reinterpret_cast<char*>(&num), numbers, sizeof(num));
+            std::vector<Animals> KotikiFil;
+            KotikiFil.resize(sizeof(Animals)* num);
+            iResult = recv(ConnectSocket, recvbuf, sizeof(KotikiFil), 0);
             for (int i = 0; i < num; i++) {
-                iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
-                Animals temp;
-                char data[sizeof(Animals)] = {};
-                for (int j = 0; j < sizeof(Animals); j++) {
-                    data[j] = recvbuf[j];
-                }
-
-                memcpy(reinterpret_cast<char*>(&temp), data, sizeof(Animals));
-                std::cout << temp << std::endl;
+                std::cout << KotikiFil[i] << std::endl;
             }
         }
               break;
