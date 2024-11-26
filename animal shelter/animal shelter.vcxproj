@@ -128,7 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animal shelter.cpp" />
+    <ClCompile Include="AnimalClass.cpp" />
+    <ClCompile Include="bd.cpp" />
     <ClCompile Include="Server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimalClass.h" />
+    <ClInclude Include="bd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

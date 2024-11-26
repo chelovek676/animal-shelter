@@ -1,6 +1,7 @@
 #include "AnimalClass.h"
-#include "bd.h"
 #include <vector>
+#include "bd.h"
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -38,24 +39,24 @@ void BD::read() {
     print(); 
 }
 
-void BD::add(const Animals& newAnimal) {
+void BD::add(Animals newAnimal) {
     KotikiVec.push_back(newAnimal);
     _NumberOfCats = KotikiVec.size();
 
-    cout << "New animal added successfully with ID: " << id << " and status in shelter.\n";
+    //cout << "New animal added successfully with ID: " << id << " and status in shelter.\n";
 }
 
 
 
 void BD::print() {
-    for (const auto& animal : KotikiVec) {
+    for (Animals animal : KotikiVec) {
         cout << animal; 
     }
 }
 
 
-void BD::edit(unsigned int _id) {
-    for (auto& animal : KotikiVec) {
+void BD::edit(unsigned long int _id) {
+    for (Animals animal : KotikiVec) {
         if (animal.get_Id() == _id) {
             cout << "Editing information for animal with ID " << _id << ":\n";
             
@@ -85,10 +86,10 @@ void BD::edit(unsigned int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-void BD::Delete(unsigned int _id) {
-    for (auto it = KotikiVec.begin(); it != KotikiVec.end(); ++it) {
-        if (it->get_Id() == _id) {
-            KotikiVec.erase(it);
+void BD::Delete(unsigned long int _id) {
+    for (int i = 0; i < KotikiVec.size(); i++) {
+        if (KotikiVec[i].get_Id() == _id) {
+            KotikiVec.erase(KotikiVec.begin()+i);
             _NumberOfCats = KotikiVec.size();
             cout << "Animal with ID " << _id << " deleted.\n";
             return;
@@ -97,12 +98,11 @@ void BD::Delete(unsigned int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-vector<Animals> BD::search(unsigned int _id, bool _breed, bool _gender, bool _age) {
-    vector<Animals> FilteredVec;
-    for (auto it = KotikiVec.begin(); it != KotikiVec.end(); ++it) {
-        if (it->get_Id() == _id and it->get_Breed() == _breed and it->get_Gender() == _gender and it->get_Age() == _age) {
-            FilteredVec.push_back(it);
+void BD::search(unsigned long int _id, bool _breed, bool _gender, bool _age, vector<Animals>* retAnim) {
+    for (int i = 0; i<KotikiVec.size(); ++i) {
+        if (KotikiVec[i].get_Id() == _id and KotikiVec[i].get_Breed() == _breed and KotikiVec[i].get_Gender() == _gender and KotikiVec[i].get_Age() == _age) {
+            retAnim->push_back(KotikiVec[i]);
         }
     }
-    return FilteredVec;
+    return;
 }

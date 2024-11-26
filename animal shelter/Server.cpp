@@ -12,6 +12,8 @@
 #include<string>
 #include<valarray>
 #include<vector>
+#include"bd.h"
+#include"AnimalClass.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -24,11 +26,6 @@ typedef unsigned char byte;
 
 using namespace std;
 
-struct Filters {
-    string sex;
-    string breed;
-    int age;
-};
 
 int __cdecl main(void)
 {
@@ -114,36 +111,14 @@ int __cdecl main(void)
         if (iResult > 0) {
             printf("Bytes received: %d\n", iResult);
 
-            byte mode_byte[4] = {};
-            for (int i = 0; i < 4; i++) {
-                mode_byte[i] = recvbuf[i];
+            char rec[4] = {};
+            for (int i = 0; i < iResult; i++) {
+                rec[i] = recvbuf[i];
             }
 
-            int mode;
-            memcpy(reinterpret_cast<byte*>(&mode), mode_byte, sizeof(int));
-            switch (mode) {
-            case 1: {
-                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
-                if (iResult == 0) break;
-                Filters filter;
-                byte filter_bytes[12];
-                for (int i = 0; i < 12; i++) {
-                    filter_bytes[i] = recvbuf[i];
-                }
-
-                memcpy(reinterpret_cast<byte*>(&filter), filter_bytes, sizeof(filter));
-                //vector<Animals> anims;
-
-                
-                break;
-            }
-            case 2:
-            {
-                Animals temp = {};
-
-                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
-            }
-            }
+            int testint = {};
+            memcpy(reinterpret_cast<char*>(&testint), rec, sizeof(int));
+            cout << testint;
             // Echo the buffer back to the sender
             /*iSendResult = send(ClientSocket, recvbuf, iResult, 0);
             if (iSendResult == SOCKET_ERROR) {
