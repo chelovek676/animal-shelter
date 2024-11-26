@@ -139,6 +139,7 @@ int __cdecl main(int argc, char** argv)
             std::cout << "0-Female, 1-Male, 2 - not matter" << std::endl;
             std::cin >> flt.sex;
             std::cout << "0- less then a year, 1-more then a year, 2 - not matter" << std::endl;
+            std::cin >> flt.age;
             if (not(flt.breed >= 0 and flt.breed <= 2) or not(flt.age >= 0 and flt.age <= 2) or not(flt.sex >= 0 and flt.sex <= 2)) {
                 std::cout << "Error" << std::endl;
                 iResult=send(ConnectSocket, reinterpret_cast<char*>(0), 0, 0);
