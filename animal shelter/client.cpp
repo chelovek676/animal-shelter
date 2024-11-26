@@ -170,7 +170,9 @@ int __cdecl main(int argc, char** argv)
             unsigned long int num = {};
             memcpy(reinterpret_cast<char*>(&num), numbers, sizeof(num));
             std::vector<Animals> KotikiFil;
-            KotikiFil.resize(sizeof(Animals)* num);
+            KotikiFil.resize(num);
+            const char* wait = "Ready";
+            iResult = send(ConnectSocket, wait, sizeof(wait), 0);
             iResult = recv(ConnectSocket, recvbuf, sizeof(KotikiFil), 0);
             memcpy(reinterpret_cast<char*>(&KotikiFil), recvbuf, sizeof(KotikiFil));
             for (int i = 0; i < num; i++) {
