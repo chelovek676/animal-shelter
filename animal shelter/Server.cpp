@@ -141,11 +141,17 @@ int __cdecl main(void)
             {
                 iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
                 struct filter {
-                    bool breed;
-                    bool sex;
-                    bool age;
+                    short int breed;
+                    short int sex;
+                    short int age;
                 };
-                char rec[sizeof(Animals)] = {};
+                char rec[sizeof(filter)] = {};
+                filter flt;
+                for (int i = 0; i < iResult; i++) {
+                    rec[i] = recvbuf[i];
+                }
+                memcpy(reinterpret_cast<char*>(&flt), rec, sizeof(filter));
+                dataBase.search(flt.breed)
 
             }
             break;
