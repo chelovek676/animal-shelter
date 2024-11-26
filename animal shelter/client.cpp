@@ -175,11 +175,11 @@ int __cdecl main(int argc, char** argv)
             int tempInt = sizeof(KotikiFil);
 
             //char* dataKot{ new char[tempInt] };
-            char dataKot[sizeof(KotikiFil)] = {};
+            char* dataKot{new char[sizeof(Animals)*num]};
             std::cout << sizeof(KotikiFil) << std::endl;
             iResult = send(ConnectSocket, wait, sizeof(wait), 0);
-            iResult = recv(ConnectSocket, dataKot, sizeof(KotikiFil), 0);
-            memcpy(reinterpret_cast<char*>(&KotikiFil), dataKot, sizeof(KotikiFil));
+            iResult = recv(ConnectSocket, dataKot, sizeof(Animals)*num, 0);
+            memcpy(reinterpret_cast<char*>(&(KotikiFil[0])), dataKot, sizeof(Animals)*num);
             for (int i = 0; i < num; i++) {
                 std::cout << KotikiFil[i] << std::endl;
             }
