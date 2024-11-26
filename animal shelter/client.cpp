@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include "AnimalClass.h"
 
 // Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -85,21 +86,76 @@ int __cdecl main(int argc, char** argv)
     }
 
     // Send an initial buffer
-    int key;
-    std::cout << "Enter key" << std::endl;
-    std::cin >> key;
-    char test[4];
-    memcpy(test, reinterpret_cast<char*>(&key), sizeof(int));
-    iResult = send(ConnectSocket, test, (int)strlen(test), 0);
-    if (iResult == SOCKET_ERROR) {
-        printf("send failed with error: %d\n", WSAGetLastError());
-        closesocket(ConnectSocket);
-        WSACleanup();
-        return 1;
+    int param = 1;
+    while (param) {
+        int key;
+        std::cout << "Enter key" << std::endl;
+        std::cout << "1 - Send cat, 2 - Search cat, 0 - Exit" << std::endl;
+        std::cin >> key;
+        char test[4];
+        memcpy(test, reinterpret_cast<char*>(&key), sizeof(int));
+        iResult = send(ConnectSocket, test, (int)strlen(test), 0);
+        if (iResult == SOCKET_ERROR) {
+            printf("send failed with error: %d\n", WSAGetLastError());
+            closesocket(ConnectSocket);
+            WSACleanup();
+            return 1;
+        }
+        else if (iResult == 0) {
+            break;
+        }
+        printf("Bytes Sent: %ld\n", iResult);
+
+        switch (key) {
+        case 1: {
+            Animals temp;
+            std::cin >> temp;
+            char data[sizeof(Animals)] = {};
+            memcpy(data, reinterpret_cast<char*>(&temp), sizeof(Animals));
+            iResult = send(ConnectSocket, data, sizeof(data), 0);
+            if (iResult == SOCKET_ERROR) {
+                printf("send failed with error: %d\n", WSAGetLastError());
+                closesocket(ConnectSocket);
+                WSACleanup();
+                return 1;
+            }
+            else if (iResult == 0) {
+                break;
+            }
+            printf("Bytes Sent: %ld\n", iResult);
+
+        }
+        break;
+        case 2: {
+            std::cout << "Enter parameters for search: Have breed? What gender? Is age less, than year or not?" << std::endl;
+            Animals tmpSearch;
+            std::cin >> tmpSearch;
+            char data[sizeof(Animals)] = {};
+            memcpy(data, reinterpret_cast<char*>(&tmpSearch), sizeof(Animals));
+            iResult = send(ConnectSocket, data, sizeof(data), 0);
+            if (iResult == SOCKET_ERROR) {
+                printf("send failed with error: %d\n", WSAGetLastError());
+                closesocket(ConnectSocket);
+                WSACleanup();
+                return 1;
+            }
+            else if (iResult == 0) {
+                break;
+            }
+            printf("Bytes Sent: %ld\n", iResult);
+        }
+              break;
+        }
+        
+        iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
+        if (iResult > 0)
+            printf("Bytes received: %d\n", iResult);
+        else if (iResult == 0)
+            printf("Connection closed\n");
+        else
+            printf("recv failed with error: %d\n", WSAGetLastError());
     }
-
-    printf("Bytes Sent: %ld\n", iResult);
-
+    
     // shutdown the connection since no more data will be sent
     iResult = shutdown(ConnectSocket, SD_SEND);
     if (iResult == SOCKET_ERROR) {
@@ -110,7 +166,7 @@ int __cdecl main(int argc, char** argv)
     }
 
     // Receive until the peer closes the connection
-    do {
+    /*do {
 
         iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
         if (iResult > 0)
@@ -120,7 +176,7 @@ int __cdecl main(int argc, char** argv)
         else
             printf("recv failed with error: %d\n", WSAGetLastError());
 
-    } while (iResult > 0);
+    } while (iResult > 0);*/
 
     // cleanup
     closesocket(ConnectSocket);
