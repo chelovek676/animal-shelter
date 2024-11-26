@@ -175,7 +175,7 @@ int __cdecl main(int argc, char** argv)
             int tempInt = sizeof(KotikiFil);
 
             //char* dataKot{ new char[tempInt] };
-            char dataKot[sizeof(KotikiFil)];
+            char dataKot[sizeof(KotikiFil)] = {};
             std::cout << sizeof(KotikiFil) << std::endl;
             iResult = send(ConnectSocket, wait, sizeof(wait), 0);
             iResult = recv(ConnectSocket, dataKot, sizeof(KotikiFil), 0);
