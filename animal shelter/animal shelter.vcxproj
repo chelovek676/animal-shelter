@@ -130,6 +130,7 @@
     <ClCompile Include="animal shelter.cpp" />
     <ClCompile Include="AnimalClass.cpp" />
     <ClCompile Include="bd.cpp" />
+    <ClCompile Include="client.cpp" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>

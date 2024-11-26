@@ -118,7 +118,7 @@ int __cdecl main(void)
 
             int testint = {};
             memcpy(reinterpret_cast<char*>(&testint), rec, sizeof(int));
-            cout << testint;
+            cout << testint<<endl;
             // Echo the buffer back to the sender
             /*iSendResult = send(ClientSocket, recvbuf, iResult, 0);
             if (iSendResult == SOCKET_ERROR) {
