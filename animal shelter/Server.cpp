@@ -120,7 +120,7 @@ int __cdecl main(void)
 
             int testint = {};
             memcpy(reinterpret_cast<char*>(&testint), rec, sizeof(int));
-            cout << testint<<endl;
+            printf("%d\n", testint);
             switch (testint)
             {
             case 1:
@@ -154,6 +154,7 @@ int __cdecl main(void)
                 vector<Animals>KotikiFil = {};
                 dataBase.search(flt.breed, flt.sex, flt.breed, &KotikiFil);
                 unsigned long int numberInt = KotikiFil.size();
+                //cout << "Filtr getted" << endl;
 
                 char number[8] = {};
 
@@ -161,12 +162,9 @@ int __cdecl main(void)
 
                 iResult = send(ClientSocket, number, sizeof(number), 0);
 
-                for (unsigned long int i = 0; i < numberInt; i++) {
-                    Animals temp = KotikiFil[i];
-                    char data[sizeof(Animals)] = {};
-                    memcpy(data, reinterpret_cast<char*>(&temp), sizeof(Animals));
-                    iResult = send(ClientSocket, data, sizeof(Animals), 0);
-                }
+                char* data{ new char[sizeof(KotikiFil)]};
+                memcpy(data, reinterpret_cast<char*>(&KotikiFil), sizeof(KotikiFil));
+                iResult = send(ClientSocket, data, sizeof(data), 0);
 
             }
             break;
