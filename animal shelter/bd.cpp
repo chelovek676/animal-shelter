@@ -98,7 +98,7 @@ void BD::Delete(unsigned long int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-void BD::search(bool breed, bool gender, bool age, vector<Animals>* retAnim) {
+void BD::search(short int breed, short int gender, short int age, vector<Animals>* retAnim) {
     for (Animals kot : KotikiVec) {
         if ((breed < 2 and breed != kot.get_Breed()) and (gender < 2 and gender != kot.get_Gender())) {
             continue;
