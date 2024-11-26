@@ -172,6 +172,7 @@ int __cdecl main(int argc, char** argv)
             std::vector<Animals> KotikiFil;
             KotikiFil.resize(sizeof(Animals)* num);
             iResult = recv(ConnectSocket, recvbuf, sizeof(KotikiFil), 0);
+            memcpy(reinterpret_cast<char*>(&KotikiFil), recvbuf, sizeof(KotikiFil));
             for (int i = 0; i < num; i++) {
                 std::cout << KotikiFil[i] << std::endl;
             }
