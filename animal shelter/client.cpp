@@ -157,6 +157,27 @@ int __cdecl main(int argc, char** argv)
                 break;
             }
             printf("Bytes Sent: %ld\n", iResult);
+
+            iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
+
+            char numbers[8] = {};
+            for (int i = 0; i < 8; i++) {
+                numbers[i] = recvbuf[i];
+            }
+
+            unsigned long int num = {};
+            memcpy(reinterpret_cast<char*>(&num), numbers, sizeof(num));
+            for (int i = 0; i < num; i++) {
+                iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
+                Animals temp;
+                char data[sizeof(Animals)] = {};
+                for (int j = 0; j < sizeof(Animals); j++) {
+                    data[j] = recvbuf[j];
+                }
+
+                memcpy(reinterpret_cast<char*>(&temp), data, sizeof(Animals));
+                std::cout << temp << std::endl;
+            }
         }
               break;
         }
