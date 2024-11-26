@@ -29,6 +29,8 @@ using namespace std;
 
 int __cdecl main(void)
 {
+    BD dataBase = {};
+    dataBase.read();
     WSADATA wsaData;
     int iResult;
 
@@ -119,6 +121,37 @@ int __cdecl main(void)
             int testint = {};
             memcpy(reinterpret_cast<char*>(&testint), rec, sizeof(int));
             cout << testint<<endl;
+            switch (testint)
+            {
+            case 1:
+            {
+                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+                printf("Bytes received: %d\n", iResult);
+                Animals temp;
+                char rec[sizeof(Animals)] = {};
+                for (int i = 0; i < sizeof(Animals); i++) {
+                    rec[i] = recvbuf[i];
+                }
+                memcpy(reinterpret_cast<char*>(&temp), rec, sizeof(Animals));
+                cout << temp << endl;
+                dataBase.add(temp);
+            }
+            break;
+            case 2:
+            {
+                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+                struct filter {
+                    bool breed;
+                    bool sex;
+                    bool age;
+                };
+                char rec[sizeof(Animals)] = {};
+
+            }
+            break;
+            default:
+                break;
+            }
             // Echo the buffer back to the sender
             /*iSendResult = send(ClientSocket, recvbuf, iResult, 0);
             if (iSendResult == SOCKET_ERROR) {
@@ -129,14 +162,18 @@ int __cdecl main(void)
             }
             printf("Bytes sent: %d\n", iSendResult);*/
         }
-        else if (iResult == 0)
+        else if (iResult == 0) {
             printf("Connection closing...\n");
+            break;
+        }
         else {
             printf("recv failed with error: %d\n", WSAGetLastError());
             closesocket(ClientSocket);
             WSACleanup();
             return 1;
         }
+        char* sendbuf = recvbuf;
+        iResult = send(ClientSocket, sendbuf, sizeof(sendbuf), 0);
 
     } while (iResult > 0);
 

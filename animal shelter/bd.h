@@ -12,5 +12,5 @@ public:
     void add(Animals animal);
     void Delete(unsigned long int _id);
     void print();
-    void search(unsigned long int _id, bool _breed, bool _gender, bool _age, std::vector<Animals>* retAnim);
+    void search(bool _breed, bool _gender, bool _age, std::vector<Animals>* retAnim);
 };

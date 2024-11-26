@@ -36,12 +36,12 @@ void BD::read() {
         }
     in.close();
     cout << "The data has been successfully downloaded from the file 'KotikiF'" << endl;
-    print(); 
 }
 
 void BD::add(Animals newAnimal) {
     KotikiVec.push_back(newAnimal);
     _NumberOfCats = KotikiVec.size();
+    save();
 
     //cout << "New animal added successfully with ID: " << id << " and status in shelter.\n";
 }
@@ -98,9 +98,9 @@ void BD::Delete(unsigned long int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-void BD::search(unsigned long int _id, bool _breed, bool _gender, bool _age, vector<Animals>* retAnim) {
+void BD::search(bool _breed, bool _gender, bool _age, vector<Animals>* retAnim) {
     for (int i = 0; i<KotikiVec.size(); ++i) {
-        if (KotikiVec[i].get_Id() == _id and KotikiVec[i].get_Breed() == _breed and KotikiVec[i].get_Gender() == _gender and KotikiVec[i].get_Age() == _age) {
+        if (KotikiVec[i].get_Breed() == _breed and KotikiVec[i].get_Gender() == _gender and KotikiVec[i].get_Age() == _age and KotikiVec[i].get_Status() == true) {
             retAnim->push_back(KotikiVec[i]);
         }
     }
