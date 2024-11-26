@@ -127,11 +127,25 @@ int __cdecl main(int argc, char** argv)
         }
         break;
         case 2: {
-            std::cout << "Enter parameters for search: Have breed? What gender? Is age less, than year or not?" << std::endl;
-            Animals tmpSearch;
-            std::cin >> tmpSearch;
-            char data[sizeof(Animals)] = {};
-            memcpy(data, reinterpret_cast<char*>(&tmpSearch), sizeof(Animals));
+            //std::cout << "Enter parameters for search: Have breed? What gender? Is age less, than year or not?" << std::endl;
+            struct filter {
+                short int breed;
+                short int sex;
+                short int age;
+            };
+            filter flt;
+            std::cout << "1 - Thoroughbred, 0 -Not purebred 2-not matter" << std::endl;
+            std::cin >> flt.breed;
+            std::cout << "0-Female, 1-Male, 2 - not matter" << std::endl;
+            std::cin >> flt.sex;
+            std::cout << "0- less then a year, 1-more then a year, 2 - not matter" << std::endl;
+            if (not(flt.breed >= 0 and flt.breed <= 2) or not(flt.age >= 0 and flt.age <= 2) or not(flt.sex >= 0 and flt.sex <= 2)) {
+                std::cout << "Error" << std::endl;
+                iResult=send(ConnectSocket, reinterpret_cast<char*>(0), 0, 0);
+                break;
+            }
+            char data[sizeof(filter)] = {};
+            memcpy(data, reinterpret_cast<char*>(&flt), sizeof(filter));
             iResult = send(ConnectSocket, data, sizeof(data), 0);
             if (iResult == SOCKET_ERROR) {
                 printf("send failed with error: %d\n", WSAGetLastError());
