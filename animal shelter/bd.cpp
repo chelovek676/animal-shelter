@@ -98,11 +98,20 @@ void BD::Delete(unsigned long int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-void BD::search(bool _breed, bool _gender, bool _age, vector<Animals>* retAnim) {
-    for (int i = 0; i<KotikiVec.size(); ++i) {
-        if (KotikiVec[i].get_Breed() == _breed and KotikiVec[i].get_Gender() == _gender and KotikiVec[i].get_Age() == _age and KotikiVec[i].get_Status() == true) {
-            retAnim->push_back(KotikiVec[i]);
+void BD::search(bool breed, bool gender, bool age, vector<Animals>* retAnim) {
+    for (Animals kot : KotikiVec) {
+        if ((breed < 2 and breed != kot.get_Breed()) and (gender < 2 and gender != kot.get_Gender())) {
+            continue;
         }
+        if (age < 2) {
+            if (age == 0 and kot.get_Age() != 0) {
+                continue;
+            }
+            else if (age == 1 and kot.get_Age() == 0) {
+                continue;
+            }
+        }
+        retAnim->push_back(kot);
     }
     return;
 }

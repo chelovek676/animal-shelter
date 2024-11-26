@@ -151,7 +151,8 @@ int __cdecl main(void)
                     rec[i] = recvbuf[i];
                 }
                 memcpy(reinterpret_cast<char*>(&flt), rec, sizeof(filter));
-                dataBase.search(flt.breed)
+                vector<Animals>KotikiFil = {};
+                dataBase.search(flt.breed, flt.sex, flt.breed, &KotikiFil);
 
             }
             break;
