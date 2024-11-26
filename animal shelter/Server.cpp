@@ -153,6 +153,20 @@ int __cdecl main(void)
                 memcpy(reinterpret_cast<char*>(&flt), rec, sizeof(filter));
                 vector<Animals>KotikiFil = {};
                 dataBase.search(flt.breed, flt.sex, flt.breed, &KotikiFil);
+                unsigned long int numberInt = KotikiFil.size();
+
+                char number[8] = {};
+
+                memcpy(number, reinterpret_cast<char*>(&numberInt), sizeof(number));
+
+                iResult = send(ClientSocket, number, sizeof(number), 0);
+
+                for (unsigned long int i = 0; i < numberInt; i++) {
+                    Animals temp = KotikiFil[i];
+                    char data[sizeof(Animals)] = {};
+                    memcpy(data, reinterpret_cast<char*>(&temp), sizeof(Animals));
+                    iResult = send(ClientSocket, data, sizeof(Animals), 0);
+                }
 
             }
             break;
