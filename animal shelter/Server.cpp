@@ -155,7 +155,8 @@ int __cdecl main(void)
                 vector<Animals>KotikiFil = {};
                 int count = dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
                 if (count == 0) {
-                    const char* empty = NULL;
+                    char empty[4] = {};
+                    memcpy(empty, reinterpret_cast<char*>(&count), sizeof(int));
                     iResult = send(ClientSocket, empty, sizeof(empty), 0);
                     break;
                 }
@@ -168,15 +169,15 @@ int __cdecl main(void)
 
                 iResult = send(ClientSocket, number, sizeof(number), 0);
                 iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
-                char* data{new char(sizeof(Animals)*numberInt)};
-                memcpy(data, reinterpret_cast<char*>(&(KotikiFil[0])), sizeof(Animals)*numberInt);
+                char* data{ new char(sizeof(Animals) * numberInt) };
+                memcpy(data, reinterpret_cast<char*>(&(KotikiFil[0])), sizeof(Animals) * numberInt);
                 vector<Animals>test;
                 test.resize(numberInt);
-                memcpy(reinterpret_cast<char*>(&(test[0])), data, sizeof(Animals)* numberInt);
+                memcpy(reinterpret_cast<char*>(&(test[0])), data, sizeof(Animals) * numberInt);
                 for (int i = 0; i < numberInt; i++) {
                     cout << test[i] << endl;
                 }
-                iResult = send(ClientSocket, data, sizeof(Animals)*numberInt, 0);
+                iResult = send(ClientSocket, data, sizeof(Animals) * numberInt, 0);
 
             }
             break;
@@ -219,11 +220,10 @@ int __cdecl main(void)
             WSACleanup();
             return 1;
         }
-        /*char* sendbuf = recvbuf;
+        char* sendbuf = recvbuf;
         iResult = send(ClientSocket, sendbuf, sizeof(sendbuf), 0);
-        printf("sended %d bytes\n", iResult);*/
 
-    } while (iResult != 0);
+    } while (iResult > 0);
 
     // shutdown the connection since we're done
     iResult = shutdown(ClientSocket, SD_SEND);
