@@ -153,7 +153,11 @@ int __cdecl main(void)
                 }
                 memcpy(reinterpret_cast<char*>(&flt), rec, sizeof(filter));
                 vector<Animals>KotikiFil = {};
-                dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
+                int count = dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
+                if (count == 0) {
+                    iResult = send(ClientSocket, 0, 0, 0);
+                    break;
+                }
                 unsigned long int numberInt = KotikiFil.size();
                 //cout << "Filtr getted" << endl;
 

@@ -98,7 +98,8 @@ void BD::Delete(unsigned long int _id) {
     cout << "Animal with ID " << _id << " not found.\n";
 }
 
-void BD::search(short int breed, short int gender, short int age, vector<Animals>* retAnim) {
+int BD::search(short int breed, short int gender, short int age, vector<Animals>* retAnim) {
+    int count = 0;
     for (Animals kot : KotikiVec) {
         if (!kot.get_Status())
             continue;
@@ -114,8 +115,9 @@ void BD::search(short int breed, short int gender, short int age, vector<Animals
             }
         }
         retAnim->push_back(kot);
+        count++;
     }
-    return;
+    return count;
 }
 
 unsigned long int BD::size() {
