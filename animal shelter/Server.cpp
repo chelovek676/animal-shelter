@@ -155,7 +155,8 @@ int __cdecl main(void)
                 vector<Animals>KotikiFil = {};
                 int count = dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
                 if (count == 0) {
-                    iResult = send(ClientSocket, 0, 0, 0);
+                    const char* empty = NULL;
+                    iResult = send(ClientSocket, empty, 0, 0);
                     break;
                 }
                 unsigned long int numberInt = KotikiFil.size();
