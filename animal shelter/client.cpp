@@ -212,13 +212,13 @@ int __cdecl main(int argc, char** argv)
         break;
         }
         
-        iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
+        /*iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
         if (iResult > 0)
             printf("Bytes received: %d\n", iResult);
         else if (iResult == 0)
             printf("Connection closed\n");
         else
-            printf("recv failed with error: %d\n", WSAGetLastError());
+            printf("recv failed with error: %d\n", WSAGetLastError());*/
     }
     
     // shutdown the connection since no more data will be sent
