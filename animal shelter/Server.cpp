@@ -219,11 +219,11 @@ int __cdecl main(void)
             WSACleanup();
             return 1;
         }
-        char* sendbuf = recvbuf;
+        /*char* sendbuf = recvbuf;
         iResult = send(ClientSocket, sendbuf, sizeof(sendbuf), 0);
-        printf("sended %d bytes\n", iResult);
+        printf("sended %d bytes\n", iResult);*/
 
-    } while (iResult > 0);
+    } while (iResult != 0);
 
     // shutdown the connection since we're done
     iResult = shutdown(ClientSocket, SD_SEND);
