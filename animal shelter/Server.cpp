@@ -156,7 +156,7 @@ int __cdecl main(void)
                 int count = dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
                 if (count == 0) {
                     const char* empty = NULL;
-                    iResult = send(ClientSocket, empty, 0, 0);
+                    iResult = send(ClientSocket, empty, sizeof(empty), 0);
                     break;
                 }
                 unsigned long int numberInt = KotikiFil.size();
