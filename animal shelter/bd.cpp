@@ -39,6 +39,7 @@ void BD::read() {
 }
 
 void BD::add(Animals newAnimal) {
+    newAnimal.set_Id(KotikiVec.size());
     KotikiVec.push_back(newAnimal);
     _NumberOfCats = KotikiVec.size();
     save();
