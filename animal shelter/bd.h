@@ -13,4 +13,6 @@ public:
     void Delete(unsigned long int _id);
     void print();
     void search(short int _breed, short int _gender, short int _age, std::vector<Animals>* retAnim);
+    unsigned long int size();
+    Animals takeCat(unsigned long int id);
 };

@@ -100,6 +100,8 @@ void BD::Delete(unsigned long int _id) {
 
 void BD::search(short int breed, short int gender, short int age, vector<Animals>* retAnim) {
     for (Animals kot : KotikiVec) {
+        if (!kot.get_Status())
+            continue;
         if ((breed < 2 and breed != kot.get_Breed()) and (gender < 2 and gender != kot.get_Gender())) {
             continue;
         }
@@ -114,4 +116,21 @@ void BD::search(short int breed, short int gender, short int age, vector<Animals
         retAnim->push_back(kot);
     }
     return;
+}
+
+unsigned long int BD::size() {
+    return KotikiVec.size();
+}
+
+Animals BD::takeCat(unsigned long int id) {
+    unsigned long int it = {};
+    for (int i = 0; i < KotikiVec.size(); i++) {
+        if (KotikiVec[i].get_Id() == id) {
+            it = i;
+            break;
+        }
+    }
+    KotikiVec[it].set_Status(false);
+    save();
+    return KotikiVec[it];
 }

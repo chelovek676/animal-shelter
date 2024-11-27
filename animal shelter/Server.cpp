@@ -153,7 +153,7 @@ int __cdecl main(void)
                 }
                 memcpy(reinterpret_cast<char*>(&flt), rec, sizeof(filter));
                 vector<Animals>KotikiFil = {};
-                dataBase.search(flt.breed, flt.sex, flt.breed, &KotikiFil);
+                dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
                 unsigned long int numberInt = KotikiFil.size();
                 //cout << "Filtr getted" << endl;
 
@@ -175,6 +175,22 @@ int __cdecl main(void)
 
             }
             break;
+            case 3: {
+                char data[8] = {};
+                unsigned long int id = {};
+                iResult = recv(ClientSocket, data, sizeof(data), 0);
+                memcpy(reinterpret_cast<char*>(&id), data, sizeof(id));
+                if (id > dataBase.size()) {
+                    iResult = send(ClientSocket, 0, 0, 0);
+                    break;
+                }
+                Animals temp = dataBase.takeCat(id);
+                char dataKot[sizeof(Animals)] = {};
+                memcpy(dataKot, reinterpret_cast<char*>(&temp), sizeof(Animals));
+
+                iResult = send(ClientSocket, dataKot, sizeof(Animals), 0);
+            }
+                  break;
             default:
                 break;
             }
