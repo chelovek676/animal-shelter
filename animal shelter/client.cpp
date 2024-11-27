@@ -162,6 +162,11 @@ int __cdecl main(int argc, char** argv)
 
             iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
 
+            if (iResult == 0) {
+                std::cout << "Cats for this parametrs has been not founded" << std::endl;
+                break;
+            }
+
             char numbers[8] = {};
             for (int i = 0; i < 8; i++) {
                 numbers[i] = recvbuf[i];
