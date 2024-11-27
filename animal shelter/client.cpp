@@ -91,7 +91,7 @@ int __cdecl main(int argc, char** argv)
     while (param) {
         int key;
         std::cout << "Enter key" << std::endl;
-        std::cout << "1 - Send cat, 2 - Search cat, 0 - Exit" << std::endl;
+        std::cout << "1 - Send cat, 2 - Search cat, 3-take cat , 0 - Exit" << std::endl;
         std::cin >> key;
         char test[4];
         memcpy(test, reinterpret_cast<char*>(&key), sizeof(int));
@@ -185,6 +185,22 @@ int __cdecl main(int argc, char** argv)
             }
         }
               break;
+        case 3:
+        {
+            std::cout << "enter id" << std::endl;
+            unsigned long int id;
+            std::cin >> id;
+            char data[8] = {};
+            memcpy(data, reinterpret_cast<char*>(&id), sizeof(id));
+            iResult = send(ConnectSocket, data, sizeof(data), 0);
+            printf("Bytes Sent: %ld\n", iResult);
+            char dataAnim[sizeof(Animals)] = {};
+            iResult = recv(ConnectSocket, dataAnim, sizeof(Animals), 0);
+            Animals temp = {};
+            memcpy(reinterpret_cast<char*>(&temp), dataAnim, sizeof(Animals));
+            std::cout << temp << std::endl;
+        }
+        break;
         }
         
         iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
