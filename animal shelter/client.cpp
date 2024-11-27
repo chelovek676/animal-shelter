@@ -90,8 +90,8 @@ int __cdecl main(int argc, char** argv)
     int param = 1;
     while (param) {
         int key;
-        std::cout << "Enter key" << std::endl;
-        std::cout << "1 - Send cat, 2 - Search cat, 3-take cat , 0 - Exit" << std::endl;
+        std::cout << "Enter key:" << std::endl;
+        std::cout << "1 - Send cat, 2 - Search cat, 3 - Take cat, 0 - Exit" << std::endl;
         std::cin >> key;
         char test[4];
         memcpy(test, reinterpret_cast<char*>(&key), sizeof(int));
@@ -135,11 +135,11 @@ int __cdecl main(int argc, char** argv)
                 short int age;
             };
             filter flt;
-            std::cout << "1 - Thoroughbred, 0 -Not purebred 2-not matter" << std::endl;
+            std::cout << "1 - Thoroughbred, 0 - Not purebred, 2 - Not matter" << std::endl;
             std::cin >> flt.breed;
-            std::cout << "0-Female, 1-Male, 2 - not matter" << std::endl;
+            std::cout << "0 - Female, 1 - Male, 2 - Not matter" << std::endl;
             std::cin >> flt.sex;
-            std::cout << "0- less then a year, 1-more then a year, 2 - not matter" << std::endl;
+            std::cout << "0 - less than a year, 1 - more than a year, 2 - Not matter" << std::endl;
             std::cin >> flt.age;
             if (not(flt.breed >= 0 and flt.breed <= 2) or not(flt.age >= 0 and flt.age <= 2) or not(flt.sex >= 0 and flt.sex <= 2)) {
                 std::cout << "Error" << std::endl;
@@ -163,7 +163,7 @@ int __cdecl main(int argc, char** argv)
             iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
 
             /*if (iResult == 0) {
-                std::cout << "Cats for this parametrs has been not founded" << std::endl;
+                std::cout << "Cats with this parametrs haven`t been found" << std::endl;
                 break;
             }*/
 
@@ -175,7 +175,7 @@ int __cdecl main(int argc, char** argv)
             unsigned long int num = {};
             memcpy(reinterpret_cast<char*>(&num), numbers, sizeof(num));
             if (num == 0) {
-                std::cout << "Cats for this parametrs has been not founded" << std::endl;
+                std::cout << "Cats with this parametrs haven`t been found" << std::endl;
                 break;
             }
             std::vector<Animals> KotikiFil;
@@ -196,7 +196,7 @@ int __cdecl main(int argc, char** argv)
               break;
         case 3:
         {
-            std::cout << "enter id" << std::endl;
+            std::cout << "Enter id:" << std::endl;
             unsigned long int id;
             std::cin >> id;
             char data[8] = {};
