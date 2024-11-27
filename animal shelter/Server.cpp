@@ -221,6 +221,7 @@ int __cdecl main(void)
         }
         char* sendbuf = recvbuf;
         iResult = send(ClientSocket, sendbuf, sizeof(sendbuf), 0);
+        printf("sended %d bytes\n", iResult);
 
     } while (iResult > 0);
 
