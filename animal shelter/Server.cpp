@@ -198,6 +198,7 @@ int __cdecl main(void)
                     memcpy(fail, reinterpret_cast<char*>(&zero), sizeof(bool));
                     iResult = send(ClientSocket, fail, sizeof(data), 0);
                 }
+                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
                 Animals temp = dataBase.takeCat(id);
                 char dataKot[sizeof(Animals)] = {};
                 memcpy(dataKot, reinterpret_cast<char*>(&temp), sizeof(Animals));
