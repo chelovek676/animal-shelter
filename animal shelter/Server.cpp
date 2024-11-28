@@ -229,6 +229,7 @@ int __cdecl main(void)
             return 1;
         }
         char* sendbuf = recvbuf;
+        Sleep(1);
         iResult = send(ClientSocket, sendbuf, sizeof(sendbuf), 0);
 
     } while (iResult > 0);
