@@ -186,7 +186,7 @@ int __cdecl main(void)
                 unsigned long int id = {};
                 iResult = recv(ClientSocket, data, sizeof(data), 0);
                 memcpy(reinterpret_cast<char*>(&id), data, sizeof(id));
-                char fail[1] = {};
+                /*char fail[1] = {};
                 bool zero = 0;
                 if (id > dataBase.size()) {
                     memcpy(fail, reinterpret_cast<char*>(&zero), sizeof(bool));
@@ -198,7 +198,7 @@ int __cdecl main(void)
                     memcpy(fail, reinterpret_cast<char*>(&zero), sizeof(bool));
                     iResult = send(ClientSocket, fail, sizeof(data), 0);
                 }
-                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+                iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);*/
                 Animals temp = dataBase.takeCat(id);
                 char dataKot[sizeof(Animals)] = {};
                 memcpy(dataKot, reinterpret_cast<char*>(&temp), sizeof(Animals));
