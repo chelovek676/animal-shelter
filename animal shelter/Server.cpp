@@ -155,8 +155,8 @@ int __cdecl main(void)
                 vector<Animals>KotikiFil = {};
                 int count = dataBase.search(flt.breed, flt.sex, flt.age, &KotikiFil);
                 if (count == 0) {
-                    char empty[4] = {};
-                    memcpy(empty, reinterpret_cast<char*>(&count), sizeof(int));
+                    char empty[8] = {};
+                    memcpy(empty, reinterpret_cast<char*>(&count), sizeof(unsigned long int));
                     iResult = send(ClientSocket, empty, sizeof(empty), 0);
                     break;
                 }
