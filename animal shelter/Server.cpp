@@ -187,6 +187,9 @@ int __cdecl main(void)
                 iResult = recv(ClientSocket, data, sizeof(data), 0);
                 memcpy(reinterpret_cast<char*>(&id), data, sizeof(id));
                 if (id > dataBase.size()) {
+                    char data[4] = {};
+                    int zero = 0;
+                    memcpy(data, reinterpret_cast<char*>(&zero), sizeof(int));
                     iResult = send(ClientSocket, 0, 0, 0);
                     break;
                 }
