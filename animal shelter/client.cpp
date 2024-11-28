@@ -209,10 +209,14 @@ int __cdecl main(int argc, char** argv)
             memcpy(reinterpret_cast<char*>(&fail), failc, sizeof(bool));
             if (!fail)
                 break;
-            char dataAnim[sizeof(Animals)] = {};
-            iResult = recv(ConnectSocket, dataAnim, sizeof(Animals), 0);
-            Animals temp = {};
-            memcpy(reinterpret_cast<char*>(&temp), dataAnim, sizeof(Animals));
+            iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
+            printf("Bytes received: %d\n", iResult);
+            Animals temp;
+            char rec[sizeof(Animals)] = {};
+            for (int i = 0; i < sizeof(Animals); i++) {
+                rec[i] = recvbuf[i];
+            }
+            memcpy(reinterpret_cast<char*>(&temp), rec, sizeof(Animals));
             std::cout << temp << std::endl;
         }
         break;
