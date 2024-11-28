@@ -203,6 +203,12 @@ int __cdecl main(int argc, char** argv)
             memcpy(data, reinterpret_cast<char*>(&id), sizeof(id));
             iResult = send(ConnectSocket, data, sizeof(data), 0);
             printf("Bytes Sent: %ld\n", iResult);
+            bool fail = {};
+            char failc[1] = {};
+            iResult = recv(ConnectSocket, failc, sizeof(failc), 0);
+            memcpy(reinterpret_cast<char*>(&fail), failc, sizeof(bool));
+            if (!fail)
+                break;
             char dataAnim[sizeof(Animals)] = {};
             iResult = recv(ConnectSocket, dataAnim, sizeof(Animals), 0);
             Animals temp = {};
