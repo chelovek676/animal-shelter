@@ -104,7 +104,7 @@ int BD::search(short int breed, short int gender, short int age, vector<Animals>
     for (Animals kot : KotikiVec) {
         if (!kot.get_Status())
             continue;
-        if ((breed < 2 and breed != kot.get_Breed()) and (gender < 2 and gender != kot.get_Gender())) {
+        if ((breed < 2 and breed != kot.get_Breed()) or (gender < 2 and gender != kot.get_Gender())) {
             continue;
         }
         if (age < 2) {
