@@ -121,7 +121,7 @@ int __cdecl main(int argc, char** argv)
         else if (iResult == 0) {
             break;
         }
-        printf("Bytes Sent: %ld\n", iResult);
+        //printf("Bytes Sent: %ld\n", iResult);
 
         switch (key) {
         case 1: {
@@ -139,7 +139,7 @@ int __cdecl main(int argc, char** argv)
             else if (iResult == 0) {
                 break;
             }
-            printf("Bytes Sent: %ld\n", iResult);
+            //printf("Bytes Sent: %ld\n", iResult);
 
         }
         break;
@@ -197,7 +197,7 @@ int __cdecl main(int argc, char** argv)
             else if (iResult == 0) {
                 break;
             }
-            printf("Bytes Sent: %ld\n", iResult);
+            //printf("Bytes Sent: %ld\n", iResult);
 
             iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
 
@@ -253,7 +253,7 @@ int __cdecl main(int argc, char** argv)
             if (!fail)
                 break;
             iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
-            printf("Bytes received: %d\n", iResult);
+            //printf("Bytes received: %d\n", iResult);
             Animals temp;
             char rec[sizeof(Animals)] = {};
             for (int i = 0; i < sizeof(Animals); i++) {
@@ -266,11 +266,11 @@ int __cdecl main(int argc, char** argv)
         }
         
         iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
-        if (iResult > 0)
-            printf("Bytes received: %d\n", iResult);
-        else if (iResult == 0)
+        //if (iResult > 0)
+            //printf("Bytes received: %d\n", iResult);
+        if (iResult == 0)
             printf("Connection closed\n");
-        else
+        if (iResult < 0)
             printf("recv failed with error: %d\n", WSAGetLastError());
     }
     
