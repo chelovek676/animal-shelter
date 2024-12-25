@@ -41,19 +41,44 @@ void Animals::set_Status(const bool &status){
 }
 
 std::ostream &operator <<(std::ostream &out, const Animals &r){
-    out << "Id: " << r._id << "\nBreed: " << r._breed << "\nGender: " << r._gender <<
-           "\nAge: " << r._age << "\nStatus: " << r._status << std::endl;
+    out << " ____________________________\n";
+    out << "|     CAT WITH ID: " << r._id << "         |\n";
+    out << "|============================|\n";
+    out << "|        BREED: " << r._breed << "            |\n";
+    out << "|         SEX: " << r._gender << "             |\n"; 
+    out << "|         AGE: " << r._age << "             |\n";
+    out << "|============================|\n";
+    return out;
     return out;
 }
 
 std::istream &operator >>(std::istream &in, Animals &r){
-    std::cout << "Id: ";
-    in >> r._id;
-    std::cout << "Breed: ";
+    std::cout<<"_____________________"<<endl;
+    std::cout<<"|       BREED       |               ,/|         _.--''^``-...___.._.,;"<<endl;
+    std::cout<<"|===================|              /, |'.     _-'          ,--,,,--'''"<<endl;
+    std::cout<<"| 0 - THOROUGHBRED  |             { |    `_-''       '    /}"<<endl;
+    std::cout<<"| 1 - NOT PUREBRED  |              `;;'            ;   ; ;"<<endl;
+    std::cout<<"|  2 - NOT MATTER   |          ._.--''     ._,,, _..'  .;.'"<<endl;
+    std::cout<<"|===================|           (,_....----'''     (,..--''"<<endl;
+    std::cout<<"|_____ENTER_KEY_____|"<<endl;
     in >> r._breed;
-    std::cout << "Gender: ";
+    std::cout<<"_____________________"<<endl;
+    std::cout<<"|        SEX        |             ||__|,|   (`)        "<<endl;
+    std::cout<<"|===================|             |_ _  |.--.) )       "<<endl;
+    std::cout<<"|    0 - FEMALE     |             ( T   )     |        "<<endl;
+    std::cout<<"|     1 - MALE      |            (((^_(((/(((_>        "<<endl;
+    std::cout<<"|  2 - NOT MATTER   |                                 "<<endl;
+    std::cout<<"|===================|                                "<<endl;
+    std::cout<<"|_____ENTER_KEY_____|"<<endl;
     in >> r._gender;
-    std::cout << "Age: ";
+    std::cout << "_____________________" << std::endl;
+    std::cout << "|        AGE        |   //___// " << std::endl;
+    std::cout << "|===================|  ( o   o )" << std::endl;
+    std::cout << "|   0 - < 1 YEAR    |  (  =^=  )" << std::endl;
+    std::cout << "|   1 - > 1 YEAR    |  (        )" << std::endl;
+    std::cout << "|  2 - NOT MATTER   |  (         )"<< std::endl;
+    std::cout << "|===================|  (__________)))))))))))" << std::endl;
+    std::cout << "|_____ENTER_KEY_____|  " << std::endl;
     in >> r._age;
     return in;
 }
