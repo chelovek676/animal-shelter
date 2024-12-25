@@ -90,8 +90,24 @@ int __cdecl main(int argc, char** argv)
     int param = 1;
     while (param) {
         int key;
-        std::cout << "Enter key:" << std::endl;
-        std::cout << "1 - Send cat, 2 - Search cat, 3 - Take cat, 0 - Exit" << std::endl;
+        std::cout << "=========================================================================================================" << std::endl;
+        std::cout << " .d888888           oo                     dP    .d88888b  dP                dP   dP                     " << std::endl;
+        std::cout << "d8'    88                                  88    88.    '' 88                88   88                     " << std::endl;
+        std::cout << "88aaaaa88a 88d888b. dP 88d8b.d8b. .d8888b. 88    `Y88888b. 88d888b. .d8888b. 88 d8888P .d8888b. 88d888b. " << std::endl;
+        std::cout << "88     88  88'  `88 88 88'`88'`88 88'  `88 88          `8b 88'  `88 88ooood8 88   88   88ooood8 88'  `88 " << std::endl;
+        std::cout << "88     88  88    88 88 88  88  88 88.  .88 88    d8'   .8P 88    88 88.  ... 88   88   88.  ... 88       " << std::endl;
+        std::cout << "88     88  dP    dP dP dP  dP  dP `88888P8 dP     Y88888P  dP    dP `88888P' dP   dP   `88888P' dP       " << std::endl;
+        std::cout << "=================================================================================================vr_0.0.1" << std::endl;
+        std::cout << "                                                                                                         " << std::endl;
+        std::cout << "_____________________" << endl;
+        std::cout << "|      OPTIONS      |                 ___,'|             _.-''``-...___..--';)" << std::endl;
+        std::cout << "|===================|                 /_ /'.      __..-' ,      ,--...--'''" << std::endl;
+        std::cout << "|    1 - SEND CAT   |                <|    .`--'''       `     /'" << std::endl;
+        std::cout << "|   2 - SEARCH CAT  |                 `-';'               ;   ; ;" << std::endl;
+        std::cout << "|    3 - TAKE CAT   |           __...--''     ___...--_..'  .;.'" << std::endl;
+        std::cout << "|      0 - EXIT     |          (,__....----'''       (,..--''" << std::endl;
+        std::cout << "|===================|" << std::endl;
+        std::cout << "|_____ENTER_KEY_____|" << std::endl;
         std::cin >> key;
         char test[4];
         memcpy(test, reinterpret_cast<char*>(&key), sizeof(int));
@@ -135,14 +151,37 @@ int __cdecl main(int argc, char** argv)
                 short int age;
             };
             filter flt;
-            std::cout << "1 - Thoroughbred, 0 - Not purebred, 2 - Not matter" << std::endl;
+            std::cout << "_____________________"<<endl;
+            std::cout << "|       BREED       |               ,/|         _.--''^``-...___.._.,;" << std::endl;
+            std::cout << "|===================|              /, |'.     _-'          ,--,,,--'''" << std::endl;
+            std::cout << "| 0 - THOROUGHBRED  |             { |    `_-''       '    /}" << std::endl;
+            std::cout << "| 1 - NOT PUREBRED  |              `;;'            ;   ; ;" << std::endl;
+            std::cout << "|  2 - NOT MATTER   |          ._.--''     ._,,, _..'  .;.'" << std::endl;
+            std::cout << "|===================|           (,_....----'''     (,..--''" << std::endl;
+            std::cout << "|_____ENTER_KEY_____|" << std::endl;
             std::cin >> flt.breed;
-            std::cout << "0 - Female, 1 - Male, 2 - Not matter" << std::endl;
+            std::cout << "_____________________" << std::endl;
+            std::cout << "|        SEX        |             ||__|,|   (`)        " << std::endl;
+            std::cout << "|===================|             |_ _  |.--.) )       " << std::endl;
+            std::cout << "|    0 - FEMALE     |             ( T   )     |        " << std::endl;
+            std::cout << "|     1 - MALE      |            (((^_(((/(((_>        " << std::endl;
+            std::cout << "|  2 - NOT MATTER   |                                 " << std::endl;
+            std::cout << "|===================|                                " << std::endl;
+            std::cout << "|_____ENTER_KEY_____|" << std::endl;
             std::cin >> flt.sex;
-            std::cout << "0 - less than a year, 1 - more than a year, 2 - Not matter" << std::endl;
+            std::cout << "_____________________" << std::endl;
+            std::cout << "|        AGE        |   //___// " << std::endl;
+            std::cout << "|===================|  ( o   o )" << std::endl;
+            std::cout << "|   0 - < 1 YEAR    |  (  =^=  )" << std::endl;
+            std::cout << "|   1 - > 1 YEAR    |  (        )" << std::endl;
+            std::cout << "|  2 - NOT MATTER   |  (         )"<< std::endl;
+            std::cout << "|===================|  (__________)))))))))))" << std::endl;
+            std::cout << "|_____ENTER_KEY_____|  " << std::endl;
             std::cin >> flt.age;
             if (not(flt.breed >= 0 and flt.breed <= 2) or not(flt.age >= 0 and flt.age <= 2) or not(flt.sex >= 0 and flt.sex <= 2)) {
-                std::cout << "Error" << std::endl;
+                std::cout << "_____________________" << std::endl;
+                std::cout << "|      !ERROR!      |" << std::endl;
+                std::cout << "|===================|" << std::endl;
                 iResult=send(ConnectSocket, reinterpret_cast<char*>(0), 0, 0);
                 break;
             }
@@ -175,7 +214,9 @@ int __cdecl main(int argc, char** argv)
             unsigned long int num = {};
             memcpy(reinterpret_cast<char*>(&num), numbers, sizeof(num));
             if (num == 0) {
-                std::cout << "Cats with this parametrs haven`t been found" << std::endl;
+                std::cout << "________________________________________________________" << std::endl;
+                std::cout << "|     Cats with this parametrs haven`t been found      |" << std::endl;
+                std::cout << "|======================================================|" << std::endl;
                 break;
             }
             std::vector<Animals> KotikiFil;
@@ -196,7 +237,9 @@ int __cdecl main(int argc, char** argv)
               break;
         case 3:
         {
-            std::cout << "Enter id:" << std::endl;
+            std::cout << "_____________________" << std::endl;
+            std::cout << "|     ENTER ID      |" << std::endl;
+            std::cout << "|===================|" << std::endl;
             unsigned long int id;
             std::cin >> id;
             char data[8] = {};
