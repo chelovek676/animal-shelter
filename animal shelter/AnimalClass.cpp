@@ -58,7 +58,7 @@ std::istream &operator >>(std::istream &in, Animals &r){
     std::cout<<"|===================|              /, |'.     _-'          ,--,,,--'''"<<endl;
     std::cout<<"| 0 - THOROUGHBRED  |             { |    `_-''       '    /}"<<endl;
     std::cout<<"| 1 - NOT PUREBRED  |              `;;'            ;   ; ;"<<endl;
-    std::cout<<"|  2 - NOT MATTER   |          ._.--''     ._,,, _..'  .;.'"<<endl;
+    std::cout<<"|                   |          ._.--''     ._,,, _..'  .;.'"<<endl;
     std::cout<<"|===================|           (,_....----'''     (,..--''"<<endl;
     std::cout<<"|_____ENTER_KEY_____|"<<endl;
     in >> r._breed;
@@ -67,7 +67,7 @@ std::istream &operator >>(std::istream &in, Animals &r){
     std::cout<<"|===================|             |_ _  |.--.) )       "<<endl;
     std::cout<<"|    0 - FEMALE     |             ( T   )     |        "<<endl;
     std::cout<<"|     1 - MALE      |            (((^_(((/(((_>        "<<endl;
-    std::cout<<"|  2 - NOT MATTER   |                                 "<<endl;
+    std::cout<<"|                   |                                 "<<endl;
     std::cout<<"|===================|                                "<<endl;
     std::cout<<"|_____ENTER_KEY_____|"<<endl;
     in >> r._gender;
@@ -76,7 +76,7 @@ std::istream &operator >>(std::istream &in, Animals &r){
     std::cout << "|===================|  ( o   o )" << std::endl;
     std::cout << "|   0 - < 1 YEAR    |  (  =^=  )" << std::endl;
     std::cout << "|   1 - > 1 YEAR    |  (        )" << std::endl;
-    std::cout << "|  2 - NOT MATTER   |  (         )"<< std::endl;
+    std::cout << "|                   |  (         )"<< std::endl;
     std::cout << "|===================|  (__________)))))))))))" << std::endl;
     std::cout << "|_____ENTER_KEY_____|  " << std::endl;
     in >> r._age;
